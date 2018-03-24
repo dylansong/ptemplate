@@ -4,18 +4,19 @@
   "description": "project template",
   "main": "index.js",
   "dependencies": {
-  "browser-sync": "^2.9.10",
-  "gulp": "^3.9.0"
-},
-"devDependencies": {
-  "browser-sync": "^2.9.10",
-  "gulp": "^3.9.0",
-  "gulp-awspublish": "^3.0.1",
-  "gulp-qiniu": "0.0.9",
-  "gulp-rename": "^1.2.2",
-  "gulp-rev-all": "^0.8.21",
-  "gulp-tinypng": "^1.0.2"
-},
+    "browser-sync": "^2.9.10",
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.10",
+    "gulp": "^3.9.0",
+    "gulp-awspublish": "^3.0.1",
+    "gulp-qiniu": "0.0.9",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev-all": "^0.8.21",
+    "gulp-tinypng": "^1.0.2",
+    "vinyl-ftp": "^0.6.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
