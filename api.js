@@ -10,6 +10,12 @@ api={'aws' : {
     secretKey: "wcCMivjuUGSizh2ST-7-QlBajfcweqLfXzk2bY7L",
     bucket: "moconf",
     private: false
+},
+'con':{
+  host:     'izhanghui.com',
+  user:     'izhanghui',
+  password: 'elive2013',
+  parallel: 10
 }
 
 

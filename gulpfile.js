@@ -5,10 +5,16 @@ var gulp = require('gulp'),
     qiniu = require('gulp-qiniu'),
     awspublish = require('gulp-awspublish'),
     rename = require('gulp-rename'),
-    aws = require('./api').aws;
-    qn = require('./api').qn;
-
-var PV = '201803yzjuanzhou';
+    aws = require('./api').aws,
+    qn = require('./api').qn,
+    con = require('./api').con,
+    ftp = require('vinyl-ftp'),
+    qrcode = require('qrcode'),
+    gutil = require('gutil');
+var month = '201803';
+var dir = 'ftptest';
+var PV = month+dir;
+var sitedir = month+'/'+dir;
 var publisher = awspublish.create(aws);
 var headers = {'Cache-Control': 'max-age=315360000, no-transform, public'};
 
@@ -25,6 +31,20 @@ gulp.task('aws', function () {
 
 });
 
+gulp.task('qr',function(){
+    var url = 'http://izhanghui.com/'+sitedir
+    qrcode.toFile('../qr.png', url , {
+        width:1200,
+        qzone:5,
+        color: {
+          dark: '#000',  // Blue dots
+          light: '#0000' // Transparent background
+        }
+      }, function (err) {
+        if (err) throw err
+        console.log('done')
+      })
+})
 
 
 
@@ -50,6 +70,22 @@ gulp.task('qn',function(){
   }))
 })
 
+gulp.task( 'deploy', function () {
+	var conn = ftp.create(con);
+	var globs = [
+		'cdn/index.php'
+	];
+	// using base = '.' will transfer everything to /public_html correctly
+	// turn off buffering in gulp.src for best performance
+	return gulp.src( globs, {buffer: false } )
+		.pipe( conn.dest( '/public_html/'+sitedir ) );
+
+} );
+
+
+
+
+gulp.task('out',['qn','deploy','qr']);
 
 
 
